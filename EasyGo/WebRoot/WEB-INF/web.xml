@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>     
+    <servlet>
+        <servlet-name>1001</servlet-name>
+        <servlet-class>com.rs.route.gettoken.GetTokenRoute</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>1001</servlet-name>
+        <url-pattern>/gettoken</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>1002</servlet-name>
+        <servlet-class>com.rs.route.changetoken.ChangeTokenRoute</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>1002</servlet-name>
+        <url-pattern>/changetoken</url-pattern>
+    </servlet-mapping>
+    
+  	<servlet>
+    	<servlet-name>1003</servlet-name>
+    	<servlet-class>com.rs.route.messagestore.MessageStore</servlet-class>
+  	</servlet>
+
+    <servlet-mapping>
+    	<servlet-name>1003</servlet-name>
+    	<url-pattern>/messagestore</url-pattern>
+    </servlet-mapping>
+  
+	
+</web-app>
