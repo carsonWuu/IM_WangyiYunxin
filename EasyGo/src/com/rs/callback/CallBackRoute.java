@@ -1,6 +1,8 @@
-package com.rs.route.messagestore;
+package com.rs.callback;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.rs.method.Methods;
 import com.rs.util.bean.ReqAndRes;
 import com.rs.util.bean.ReqBean;
 import com.rs.util.method.RequestHelper;
@@ -18,14 +19,14 @@ import com.rs.util.method.RequestHelper;
  * @author wcs
  *
  */
-public class MessageStore extends HttpServlet {
+public class CallBackRoute extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
 	private Gson gson ;
 	
-	public MessageStore() {
+	public CallBackRoute() {
 		super();
 	}
 	/**
@@ -70,13 +71,20 @@ public class MessageStore extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int code = RequestHelper.verify(request) ? 200 : 414;//验证数据是否被篡改
+		boolean isVerify = RequestHelper.verify(request);//验证数据是否被篡改
 		
-		response.setStatus(code);
+		
 		System.out.println("发送之后");
-		if(code == 200) {
+		
+		Map<String,Object> map = new HashMap();
+		if(isVerify) {//验证成功
 			ReqBean reqBean = ReqAndRes.toReqBean(request, gson);
-			Methods.store(reqBean);
+			boolean cancallback = CallBack.IsCallBack(reqBean);
+			map.put("errCode", cancallback?0:1);//0:回调通过，允许执行  1:回调不通过，取消执行
+			ReqAndRes.outPrint(response, map, gson);
+		} else {//验证失败
+			map.put("errCode", 1);
+			ReqAndRes.outPrint(response, map, gson);
 		}
 		
 	}

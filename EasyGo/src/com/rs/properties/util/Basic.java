@@ -11,5 +11,5 @@ public class Basic {
 	public static volatile String nonce =  "12345";
 	public static volatile String refreshURL = "https://api.netease.im/nimserver/user/refreshToken.action";
 	public static volatile String createURL = "https://api.netease.im/nimserver/user/create.action";
-
+	public static volatile int cancallback =0;//回调默认值：1为拒绝，0为通过，2为判断
 }

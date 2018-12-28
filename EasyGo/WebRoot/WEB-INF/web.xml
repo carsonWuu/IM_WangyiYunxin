@@ -29,6 +29,16 @@
     	<servlet-name>1003</servlet-name>
     	<url-pattern>/messagestore</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+    	<servlet-name>1004</servlet-name>
+    	<servlet-class>com.rs.callback.CallBackRoute</servlet-class>
+  	</servlet>
+
+    <servlet-mapping>
+    	<servlet-name>1004</servlet-name>
+    	<url-pattern>/callback</url-pattern>
+    </servlet-mapping>
   
 	
 </web-app>

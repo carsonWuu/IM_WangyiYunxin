@@ -13,7 +13,7 @@ public class Sample {
 		System.out.println(params);
 		String ret =null;
 //存储验证码：{"phone_number":"180000000","code":"1234"}
-		ret = test("messagestore",params);	
+		ret = test("callback",params);	
 		System.out.println(ret);
 
 	}
